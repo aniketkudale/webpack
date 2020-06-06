@@ -1,7 +1,8 @@
+/** @type {import("../../../../").Configuration} */
 module.exports = {
 	resolveLoader: {
 		alias: {
-			"some-loader": 'any-loader?foo=someMessage'
+			"some-loader": "any-loader?foo=someMessage"
 		}
 	},
 	module: {
@@ -18,7 +19,7 @@ module.exports = {
 				test: /b\.js$/,
 				use: [
 					{
-						loader: 'some-loader',
+						loader: "some-loader",
 						options: {
 							foo: "someOtherMessage"
 						}
@@ -27,14 +28,18 @@ module.exports = {
 			},
 			{
 				test: /b2\.js$/,
-				loader: 'some-loader?foo=someOtherMessage'
+				loader: "some-loader",
+				options: "foo=someOtherMessage"
 			},
 			{
 				test: /b3\.js$/,
 				use: [
-					'some-loader?foo=someOtherMessage'
+					{
+						loader: "some-loader",
+						options: "foo=someOtherMessage"
+					}
 				]
 			}
 		]
 	}
-}
+};

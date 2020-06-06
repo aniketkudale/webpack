@@ -1,12 +1,12 @@
-This example demonstrates how to build a complex library with webpack. The library consist of multiple parts that are usable on its own and together.
+This example demonstrates how to build a complex library with webpack. The library consists of multiple parts that are usable on its own and together.
 
-When using this library with script tags it exports itself to the namespace `MyLibrary` and each part to a property in this namespace (`MyLibrary.alpha` and `MyLibrary.beta`). When consuming the library with CommonsJs or AMD it just export each part.
+When using this library with script tags it exports itself to the namespace `MyLibrary` and each part to a property in this namespace (`MyLibrary.alpha` and `MyLibrary.beta`). When consuming the library with CommonsJS or AMD it just exports each part.
 
-We are using multiple entry points (`entry` option) to build every part of the library as separate output file. The `output.filename` option contains `[name]` to give each output file a different name.
+We are using multiple entry points (`entry` option) to build every part of the library as a separate output file. The `output.filename` option contains `[name]` to give each output file a different name.
 
-We are using the `libraryTarget` option to generate a UMD ([Universal Module Definition](https://github.com/umdjs/umd)) module that is consumable in CommonsJs, AMD and with script tags. The `library` option defines the namespace. We are using `[name]` in the `library` option to give every entry a different namespace.
+We are using the `libraryTarget` option to generate a UMD ([Universal Module Definition](https://github.com/umdjs/umd)) module that is consumable in CommonsJS, AMD and with script tags. The `library` option defines the namespace. We are using `[name]` in the `library` option to give every entry a different namespace.
 
-You can see that webpack automatically wraps your module so that it is consumable in every enviroment. All you need is this simple config.
+You can see that webpack automatically wraps your module so that it is consumable in every environment. All you need is this simple config.
 
 Note: You can also use the `library` and `libraryTarget` options without multiple entry points. Then you don't need `[name]`.
 
@@ -14,32 +14,32 @@ Note: When your library has dependencies that should not be included in the comp
 
 # webpack.config.js
 
-``` javascript
-{{webpack.config.js}}
+```javascript
+_{{webpack.config.js}}_
 ```
 
-# js/MyLibrary.alpha.js
+# dist/MyLibrary.alpha.js
 
-``` javascript
-{{js/MyLibrary.alpha.js}}
+```javascript
+_{{dist/MyLibrary.alpha.js}}_
 ```
 
-# js/MyLibrary.beta.js
+# dist/MyLibrary.beta.js
 
-``` javascript
-{{js/MyLibrary.beta.js}}
+```javascript
+_{{dist/MyLibrary.beta.js}}_
 ```
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-{{stdout}}
+_{{stdout}}_
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-{{min:stdout}}
+_{{production:stdout}}_
 ```

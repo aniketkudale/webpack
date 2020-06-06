@@ -1,4 +1,6 @@
+/** @type {import("../../../").Configuration} */
 module.exports = {
+	mode: "production",
 	entry: "./index",
 	output: {
 		filename: "bundle.js"
@@ -6,16 +8,11 @@ module.exports = {
 	profile: true,
 	stats: {
 		reasons: true,
+		chunks: true,
 		chunkModules: true,
+		chunkRelations: true,
 		chunkOrigins: true,
-		modules: true,
-		cached: true,
-		cachedAssets: true,
-		source: true,
-		errorDetails: true,
-		publicPath: true,
-		excludeModules: [
-			/e\.js/
-		]
+		modules: false,
+		publicPath: true
 	}
 };

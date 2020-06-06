@@ -1,3 +1,2 @@
-module.exports = {
-
-};
+/** @type {import("../../../../").Configuration} */
+module.exports = {};

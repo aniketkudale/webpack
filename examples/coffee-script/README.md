@@ -1,13 +1,12 @@
-
 # example.js
 
-``` javascript
+```javascript
 console.log(require("./cup1"));
 ```
 
 # cup1.coffee
 
-``` coffee-script
+```coffee-script
 module.exports =
 	cool: "stuff"
 	answer: 42
@@ -17,167 +16,143 @@ module.exports =
 
 # cup2.coffee
 
-``` coffee-script
+```coffee-script
 console.log "yeah coffee-script"
 
 module.exports = 42
 ```
 
-# js/output.js
+# dist/output.js
 
-<details><summary>`/******/ (function(modules) { /* webpackBootstrap */ })`</summary>
-``` javascript
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+```javascript
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ([
+/* 0 */,
+/* 1 */
+/*!*********************!*\
+  !*** ./cup1.coffee ***!
+  \*********************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module, __webpack_require__ */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
-
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+module.exports = {
+  cool: "stuff",
+  answer: 42,
+  external: __webpack_require__(/*! ./cup2.coffee */ 2),
+  again: __webpack_require__(/*! ./cup2 */ 2)
+};
 
 
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "js/";
-
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
-/******/ })
-/************************************************************************/
-```
-</details>
-``` javascript
-/******/ ([
-/* 0 */
-/* unknown exports provided */
-/* all exports used */
+/***/ }),
+/* 2 */
 /*!*********************!*\
   !*** ./cup2.coffee ***!
   \*********************/
-/***/ function(module, exports) {
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module */
+/***/ ((module) => {
 
 console.log("yeah coffee-script");
 
 module.exports = 42;
 
 
-/***/ },
-/* 1 */
-/* unknown exports provided */
-/* all exports used */
-/*!*********************!*\
-  !*** ./cup1.coffee ***!
-  \*********************/
-/***/ function(module, exports, __webpack_require__) {
+/***/ })
+/******/ 	]);
+```
 
-module.exports = {
-  cool: "stuff",
-  answer: 42,
-  external: __webpack_require__(/*! ./cup2.coffee */ 0),
-  again: __webpack_require__(/*! ./cup2 */ 0)
-};
+<details><summary><code>/* webpack runtime code */</code></summary>
 
+``` js
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+```
 
-/***/ },
-/* 2 */
-/* unknown exports provided */
-/* all exports used */
+</details>
+
+``` js
+(() => {
 /*!********************!*\
   !*** ./example.js ***!
   \********************/
-/***/ function(module, exports, __webpack_require__) {
-
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [unused] */
+/*! runtime requirements: __webpack_require__ */
 console.log(__webpack_require__(/*! ./cup1 */ 1));
+})();
 
-/***/ }
-/******/ ]);
+/******/ })()
+;
 ```
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-Hash: 909077149c791bec4711
-Version: webpack 2.2.0-rc.2
-    Asset     Size  Chunks             Chunk Names
-output.js  3.32 kB       0  [emitted]  main
+Hash: 0a1b2c3d4e5f6a7b8c9d
+Version: webpack 5.0.0-beta.16
+    Asset      Size
+output.js  2.18 KiB  [emitted]  [name: main]
 Entrypoint main = output.js
-chunk    {0} output.js (main) 206 bytes [entry] [rendered]
-    > main [2] ./example.js 
-    [0] ./cup2.coffee 57 bytes {0} [built]
-        cjs require ./cup2.coffee [1] ./cup1.coffee 4:12-36
-        cjs require ./cup2 [1] ./cup1.coffee 5:9-26
-    [1] ./cup1.coffee 118 bytes {0} [built]
-        cjs require ./cup1 [2] ./example.js 1:12-29
-    [2] ./example.js 31 bytes {0} [built]
+chunk output.js (main) 206 bytes [entry] [rendered]
+    > ./example.js main
+ ./cup1.coffee 118 bytes [built]
+     cjs require ./cup1 ./example.js 1:12-29
+     cjs self exports reference ./cup1.coffee 1:0-14
+ ./cup2.coffee 57 bytes [built]
+     cjs require ./cup2.coffee ./cup1.coffee 4:12-36
+     cjs require ./cup2 ./cup1.coffee 5:9-26
+     cjs self exports reference ./cup2.coffee 3:0-14
+ ./example.js 31 bytes [built]
+     [no exports used]
+     entry ./example.js main
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-Hash: 909077149c791bec4711
-Version: webpack 2.2.0-rc.2
-    Asset       Size  Chunks             Chunk Names
-output.js  673 bytes       0  [emitted]  main
+Hash: 0a1b2c3d4e5f6a7b8c9d
+Version: webpack 5.0.0-beta.16
+    Asset       Size
+output.js  278 bytes  [emitted]  [name: main]
 Entrypoint main = output.js
-chunk    {0} output.js (main) 206 bytes [entry] [rendered]
-    > main [2] ./example.js 
-    [0] ./cup2.coffee 57 bytes {0} [built]
-        cjs require ./cup2.coffee [1] ./cup1.coffee 4:12-36
-        cjs require ./cup2 [1] ./cup1.coffee 5:9-26
-    [1] ./cup1.coffee 118 bytes {0} [built]
-        cjs require ./cup1 [2] ./example.js 1:12-29
-    [2] ./example.js 31 bytes {0} [built]
+chunk output.js (main) 206 bytes [entry] [rendered]
+    > ./example.js main
+ ./cup1.coffee 118 bytes [built]
+     cjs require ./cup1 ./example.js 1:12-29
+     cjs self exports reference ./cup1.coffee 1:0-14
+ ./cup2.coffee 57 bytes [built]
+     cjs require ./cup2.coffee ./cup1.coffee 4:12-36
+     cjs require ./cup2 ./cup1.coffee 5:9-26
+     cjs self exports reference ./cup2.coffee 3:0-14
+ ./example.js 31 bytes [built]
+     [no exports used]
+     entry ./example.js main
 ```

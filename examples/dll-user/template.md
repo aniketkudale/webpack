@@ -1,31 +1,37 @@
+# DllUser
+
+[DllPlugin documentation](https://webpack.js.org/plugins/dll-plugin)
+
+This is the _user_ bundle, which uses the manifest from [dll-reference example](https://github.com/webpack/webpack/tree/master/examples/dll)
+
 # webpack.config.js
 
-``` javascript
-{{webpack.config.js}}
+```javascript
+_{{webpack.config.js}}_
 ```
 
 # example.js
 
-``` javascript
-{{example.js}}
+```javascript
+_{{example.js}}_
 ```
 
-# js/output.js
+# dist/output.js
 
-``` javascript
-{{js/output.js}}
+```javascript
+_{{dist/output.js}}_
 ```
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-{{stdout}}
+_{{stdout}}_
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-{{min:stdout}}
+_{{production:stdout}}_
 ```

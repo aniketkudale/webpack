@@ -1,239 +1,219 @@
+# DllReference
+
+[DllPlugin documentation](https://webpack.js.org/plugins/dll-plugin)
+
+This is the _reference_ bundle (with the manifests) for [dll user example](https://github.com/webpack/webpack/tree/master/examples/dll-user)
+
 # webpack.config.js
 
-``` javascript
+```javascript
 var path = require("path");
 var webpack = require("../../");
 module.exports = {
+	// mode: "development || "production",
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: [".js", ".jsx"]
 	},
 	entry: {
 		alpha: ["./alpha", "./a", "module"],
 		beta: ["./beta", "./b", "./c"]
 	},
 	output: {
-		path: path.join(__dirname, "js"),
+		path: path.join(__dirname, "dist"),
 		filename: "MyDll.[name].js",
-		library: "[name]_[hash]"
+		library: "[name]_[fullhash]"
 	},
 	plugins: [
 		new webpack.DllPlugin({
-			path: path.join(__dirname, "js", "[name]-manifest.json"),
-			name: "[name]_[hash]"
+			path: path.join(__dirname, "dist", "[name]-manifest.json"),
+			name: "[name]_[fullhash]"
 		})
 	]
 };
 ```
 
-# js/MyDll.alpha.js
+# dist/MyDll.alpha.js
 
-``` javascript
-var alpha_282e8826843b2bb4eeb1 =
-```
-<details><summary>`/******/ (function(modules) { /* webpackBootstrap */ })`</summary>
-``` js
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
-
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-
-
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "js/";
-
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
-/******/ })
-/************************************************************************/
-```
-</details>
-``` js
-/******/ ([
+```javascript
+var alpha_54d633ccc01113a1050b;alpha_54d633ccc01113a1050b =
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ([
 /* 0 */
-/* unknown exports provided */
-/* all exports used */
-/*!**************!*\
-  !*** ./a.js ***!
-  \**************/
-/***/ function(module, exports) {
-
-module.exports = "a";
-
-/***/ },
-/* 1 */
-/* unknown exports provided */
-/* all exports used */
-/*!******************!*\
-  !*** ./alpha.js ***!
-  \******************/
-/***/ function(module, exports) {
-
-module.exports = "alpha";
-
-/***/ },
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
-/* unknown exports provided */
-/* all exports used */
-/*!**********************!*\
-  !*** ../~/module.js ***!
-  \**********************/
-/***/ function(module, exports) {
-
-module.exports = "module";
-
-/***/ },
-/* 6 */
-/* unknown exports provided */
-/* all exports used */
 /*!*****************!*\
   !*** dll alpha ***!
   \*****************/
-/***/ function(module, exports, __webpack_require__) {
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: __webpack_require__, module */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__;
 
-/***/ }
-/******/ ]);
+/***/ }),
+/* 1 */
+/*!******************!*\
+  !*** ./alpha.js ***!
+  \******************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+module.exports = "alpha";
+
+/***/ }),
+/* 2 */
+/*!**************!*\
+  !*** ./a.js ***!
+  \**************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+module.exports = "a";
+
+/***/ }),
+/* 3 */
+/*!*********************************!*\
+  !*** ../node_modules/module.js ***!
+  \*********************************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+module.exports = "module";
+
+/***/ })
+/******/ 	]);
 ```
 
-# js/alpha-manifest.json
+<details><summary><code>/* webpack runtime code */</code></summary>
 
-``` javascript
-{
-  "name": "alpha_282e8826843b2bb4eeb1",
-  "content": {
-    "./a.js": {
-      "id": 0,
-      "meta": {}
-    },
-    "./alpha.js": {
-      "id": 1,
-      "meta": {}
-    },
-    "../node_modules/module.js": {
-      "id": 5,
-      "meta": {}
-    }
-  }
-}
+``` js
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+```
+
+</details>
+
+``` js
+/******/ 	// module exports must be returned from runtime so entry inlining is disabled
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })()
+;
+```
+
+# dist/alpha-manifest.json
+
+```javascript
+{"name":"alpha_54d633ccc01113a1050b","content":{"./alpha.js":{"id":1,"buildMeta":{}},"./a.js":{"id":2,"buildMeta":{}},"../node_modules/module.js":{"id":3,"buildMeta":{}}}}
 ```
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-Hash: 282e8826843b2bb4eeb1
-Version: webpack 2.2.0-rc.2
-         Asset     Size  Chunks             Chunk Names
- MyDll.beta.js  3.34 kB       0  [emitted]  beta
-MyDll.alpha.js  3.36 kB       1  [emitted]  alpha
+Hash: 0a1b2c3d4e5f6a7b8c9d
+Version: webpack 5.0.0-beta.16
+         Asset      Size
+MyDll.alpha.js  2.58 KiB  [emitted]  [name: alpha]
+ MyDll.beta.js  2.55 KiB  [emitted]  [name: beta]
 Entrypoint alpha = MyDll.alpha.js
 Entrypoint beta = MyDll.beta.js
-chunk    {0} MyDll.beta.js (beta) 80 bytes [entry] [rendered]
-    > beta [7] dll beta 
-    [2] ./b.js 21 bytes {0} [built]
-        single entry ./b [7] dll beta
-    [3] ./beta.js 24 bytes {0} [built]
-        single entry ./beta [7] dll beta
-    [4] ./c.jsx 23 bytes {0} [built]
-        single entry ./c [7] dll beta
-    [7] dll beta 12 bytes {0} [built]
-chunk    {1} MyDll.alpha.js (alpha) 84 bytes [entry] [rendered]
-    > alpha [6] dll alpha 
-    [0] ./a.js 21 bytes {1} [built]
-        single entry ./a [6] dll alpha
-    [1] ./alpha.js 25 bytes {1} [built]
-        single entry ./alpha [6] dll alpha
-    [5] ../~/module.js 26 bytes {1} [built]
-        single entry module [6] dll alpha
-    [6] dll alpha 12 bytes {1} [built]
+chunk MyDll.alpha.js (alpha) 84 bytes [entry] [rendered]
+    > alpha
+ ../node_modules/module.js 26 bytes [built]
+     cjs self exports reference ../node_modules/module.js 1:0-14
+     entry module dll alpha alpha[2]
+ ./a.js 21 bytes [built]
+     cjs self exports reference ./a.js 1:0-14
+     entry ./a dll alpha alpha[1]
+ ./alpha.js 25 bytes [built]
+     cjs self exports reference ./alpha.js 1:0-14
+     entry ./alpha dll alpha alpha[0]
+ dll alpha 12 bytes [built]
+     dll entry
+     used as library export
+chunk MyDll.beta.js (beta) 80 bytes [entry] [rendered]
+    > beta
+ ./b.js 21 bytes [built]
+     cjs self exports reference ./b.js 1:0-14
+     entry ./b dll beta beta[1]
+ ./beta.js 24 bytes [built]
+     cjs self exports reference ./beta.js 1:0-14
+     entry ./beta dll beta beta[0]
+ ./c.jsx 23 bytes [built]
+     cjs self exports reference ./c.jsx 1:0-14
+     entry ./c dll beta beta[2]
+ dll beta 12 bytes [built]
+     dll entry
+     used as library export
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-Hash: 282e8826843b2bb4eeb1
-Version: webpack 2.2.0-rc.2
-         Asset       Size  Chunks             Chunk Names
- MyDll.beta.js  653 bytes       0  [emitted]  beta
-MyDll.alpha.js  657 bytes       1  [emitted]  alpha
+Hash: 0a1b2c3d4e5f6a7b8c9d
+Version: webpack 5.0.0-beta.16
+         Asset       Size
+MyDll.alpha.js  302 bytes  [emitted]  [name: alpha]
+ MyDll.beta.js  292 bytes  [emitted]  [name: beta]
 Entrypoint alpha = MyDll.alpha.js
 Entrypoint beta = MyDll.beta.js
-chunk    {0} MyDll.beta.js (beta) 80 bytes [entry] [rendered]
-    > beta [7] dll beta 
-    [2] ./b.js 21 bytes {0} [built]
-        single entry ./b [7] dll beta
-    [3] ./beta.js 24 bytes {0} [built]
-        single entry ./beta [7] dll beta
-    [4] ./c.jsx 23 bytes {0} [built]
-        single entry ./c [7] dll beta
-    [7] dll beta 12 bytes {0} [built]
-chunk    {1} MyDll.alpha.js (alpha) 84 bytes [entry] [rendered]
-    > alpha [6] dll alpha 
-    [0] ./a.js 21 bytes {1} [built]
-        single entry ./a [6] dll alpha
-    [1] ./alpha.js 25 bytes {1} [built]
-        single entry ./alpha [6] dll alpha
-    [5] ../~/module.js 26 bytes {1} [built]
-        single entry module [6] dll alpha
-    [6] dll alpha 12 bytes {1} [built]
+chunk MyDll.alpha.js (alpha) 84 bytes [entry] [rendered]
+    > alpha
+ ../node_modules/module.js 26 bytes [built]
+     cjs self exports reference ../node_modules/module.js 1:0-14
+     entry module dll alpha alpha[2]
+ ./a.js 21 bytes [built]
+     cjs self exports reference ./a.js 1:0-14
+     entry ./a dll alpha alpha[1]
+ ./alpha.js 25 bytes [built]
+     cjs self exports reference ./alpha.js 1:0-14
+     entry ./alpha dll alpha alpha[0]
+ dll alpha 12 bytes [built]
+     dll entry
+     used as library export
+chunk MyDll.beta.js (beta) 80 bytes [entry] [rendered]
+    > beta
+ ./b.js 21 bytes [built]
+     cjs self exports reference ./b.js 1:0-14
+     entry ./b dll beta beta[1]
+ ./beta.js 24 bytes [built]
+     cjs self exports reference ./beta.js 1:0-14
+     entry ./beta dll beta beta[0]
+ ./c.jsx 23 bytes [built]
+     cjs self exports reference ./c.jsx 1:0-14
+     entry ./c dll beta beta[2]
+ dll beta 12 bytes [built]
+     dll entry
+     used as library export
 ```

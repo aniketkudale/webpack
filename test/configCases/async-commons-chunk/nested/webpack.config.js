@@ -1,9 +1,8 @@
-var webpack = require("../../../../");
-
+/** @type {import("../../../../").Configuration} */
 module.exports = {
-	plugins: [
-		new webpack.optimize.CommonsChunkPlugin({
-			async: true
-		})
-	]
+	optimization: {
+		splitChunks: {
+			minSize: 1
+		}
+	}
 };

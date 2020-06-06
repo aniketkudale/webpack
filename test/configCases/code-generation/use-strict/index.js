@@ -7,20 +7,15 @@ it("should include only one use strict per module", function() {
 	var fs = require("fs");
 	var source = fs.readFileSync(__filename, "utf-8");
 
-	var regExp = /\"use strict\";?\s*(.*)/g
+	var regExp = /\"use strict\";?\s*(.*)/g;
 	var match = regExp.exec(source);
 	var matches = [];
-	while(match) {
+	while (match) {
 		matches.push(match[1]);
 		match = regExp.exec(source);
 	}
 
-	matches.should.be.eql([
-		"Object.defineProperty(exports, \"__esModule\", { value: true });",
-		"Object.defineProperty(exports, \"__esModule\", { value: true });",
-		"Object.defineProperty(exports, \"__esModule\", { value: true });",
-		"/* unused harmony default export */ var _unused_webpack_default_export = \"a\";",
-		"Object.defineProperty(exports, \"__esModule\", { value: true });",
-		"it(\"should include only one use strict per module\", function() {"
-	]);
+	matches.sort();
+
+	expect(matches).toEqual(["/******/ 	var __webpack_modules__ = ({"]);
 });

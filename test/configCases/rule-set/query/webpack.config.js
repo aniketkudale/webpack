@@ -1,3 +1,4 @@
+/** @type {import("../../../../").Configuration} */
 module.exports = {
 	module: {
 		rules: [
@@ -7,4 +8,4 @@ module.exports = {
 			}
 		]
 	}
-}
+};

@@ -1,4 +1,14 @@
 it("should have __webpack_hash__", function() {
-	(typeof __webpack_hash__).should.be.type("string");
-	__webpack_hash__.should.match(/^[0-9a-f]{20}$/);
+	expect(__webpack_hash__).toBeTypeOf("string");
+	expect(__webpack_hash__).toMatch(/^[0-9a-f]{20}$/);
+	return import("./chunk").then(({ hash }) => {
+		expect(hash).toBe(__webpack_hash__);
+	});
+});
+it("should have __webpack_chunkname__", function() {
+	expect(__webpack_chunkname__).toBeTypeOf("string");
+	expect(__webpack_chunkname__).toBe("other");
+	return import("./chunk").then(({ chunkName }) => {
+		expect(chunkName).toBe(__webpack_chunkname__);
+	});
 });

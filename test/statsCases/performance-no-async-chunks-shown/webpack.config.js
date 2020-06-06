@@ -1,4 +1,6 @@
+/** @type {import("../../../").Configuration} */
 module.exports = {
+	mode: "production",
 	entry: {
 		main: "./index",
 		sec: "./index2"

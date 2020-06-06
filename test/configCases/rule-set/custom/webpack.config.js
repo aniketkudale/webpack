@@ -1,19 +1,20 @@
+/** @type {import("../../../../").Configuration} */
 module.exports = {
 	module: {
 		rules: [
 			{
 				test: /[ab]\.js$/,
-				use: function(data) {
+				use: function (data) {
 					return {
 						loader: "./loader",
 						options: {
-							resource: data.resource.replace(/^.*[\\\/]/g, ""),
+							resource: data.resource.replace(/^.*[\\/]/g, ""),
 							resourceQuery: data.resourceQuery,
-							issuer: data.issuer.replace(/^.*[\\\/]/g, ""),
+							issuer: data.issuer.replace(/^.*[\\/]/g, "")
 						}
-					}
+					};
 				}
 			}
 		]
 	}
-}
+};

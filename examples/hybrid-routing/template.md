@@ -1,65 +1,65 @@
 # webpack.config.js
 
-``` javascript
-{{webpack.config.js}}
+```javascript
+_{{webpack.config.js}}_
 ```
 
 # aEntry.js
 
-``` javascript
-{{aEntry.js}}
+```javascript
+_{{aEntry.js}}_
 ```
 
 `bEntry.js` is similar. You may want to use a loader to generate this file.
 
 # aPage.js
 
-``` javascript
-{{aPage.js}}
+```javascript
+_{{aPage.js}}_
 ```
 
 `bEntry.js` is similar.
 
 # router.js
 
-``` javascript
-{{router.js}}
+```javascript
+_{{router.js}}_
 ```
 
 # pageA.html
 
-``` html
-{{pageA.html}}
+```html
+_{{pageA.html}}_
 ```
 
-# js/commons.js
+# dist/router_js.bundle.js
 
 ``` javascript
-{{js/commons.js}}
+_{{dist/router_js.bundle.js}}_
 ```
 
-# js/pageA.bundle.js
+# dist/pageA.bundle.js
 
-``` javascript
-{{js/pageA.bundle.js}}
+```javascript
+_{{dist/pageA.bundle.js}}_
 ```
 
-# js/1.chunk.js
+# dist/aPage.chunk.js
 
-``` javascript
-{{js/1.chunk.js}}
+```javascript
+_{{dist/aPage.chunk.js}}_
 ```
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-{{stdout}}
+_{{stdout}}_
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-{{min:stdout}}
+_{{production:stdout}}_
 ```

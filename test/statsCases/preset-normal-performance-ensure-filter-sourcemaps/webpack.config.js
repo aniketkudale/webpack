@@ -1,5 +1,7 @@
+/** @type {import("../../../").Configuration} */
 module.exports = {
-	devtool: "sourcemap",
+	mode: "production",
+	devtool: "source-map",
 	performance: {
 		hints: "warning"
 	},

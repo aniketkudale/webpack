@@ -1,23 +1,23 @@
 # example.js
 
-``` javascript
+```javascript
 // use our loader
 console.dir(require("./loader!./file"));
 
-// use buildin css loader
+// use built-in css loader
 console.dir(require("./test.css")); // default by extension
 console.dir(require("!css-loader!./test.css")); // manual
 ```
 
 # file.js
 
-``` javascript
+```javascript
 exports.foo = "bar";
 ```
 
 # loader.js
 
-``` javascript
+```javascript
 module.exports = function(content) {
 	return "exports.answer = 42;\n" + content;
 }
@@ -25,198 +25,212 @@ module.exports = function(content) {
 
 # test.css
 
-``` css
+```css
 .some-class {
 	color: hotpink;
 }
 ```
 
-# js/output.js
+# dist/output.js
 
-<details><summary>`/******/ (function(modules) { /* webpackBootstrap */ })`</summary>
-``` javascript
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
-
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-
-
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "js/";
-
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
-/******/ })
-/************************************************************************/
-```
-</details>
-``` javascript
-/******/ ([
-/* 0 */
-/* unknown exports provided */
-/* all exports used */
-/*!*****************************************!*\
-  !*** (webpack)/~/css-loader!./test.css ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 2)();
-// imports
-
-
-// module
-exports.push([module.i, ".some-class {\r\n\tcolor: hotpink;\r\n}\r\n", ""]);
-
-// exports
-
-
-/***/ },
+```javascript
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ([
+/* 0 */,
 /* 1 */
-/* unknown exports provided */
-/* all exports used */
 /*!*****************************!*\
   !*** ./loader.js!./file.js ***!
   \*****************************/
-/***/ function(module, exports) {
+/*! default exports */
+/*! export answer [provided] [maybe used (runtime-defined)] [usage prevents renaming] */
+/*! export foo [provided] [maybe used (runtime-defined)] [usage prevents renaming] */
+/*! other exports [not provided] [maybe used (runtime-defined)] */
+/*! runtime requirements: __webpack_exports__ */
+/***/ ((__unused_webpack_module, exports) => {
 
 exports.answer = 42;
 exports.foo = "bar";
 
-/***/ },
+/***/ }),
 /* 2 */
-/* unknown exports provided */
-/* all exports used */
-/*!**********************************************!*\
-  !*** (webpack)/~/css-loader/lib/css-base.js ***!
-  \**********************************************/
-/***/ function(module, exports) {
+/*!************************************************************!*\
+  !*** ../../node_modules/css-loader/dist/cjs.js!./test.css ***!
+  \************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: __webpack_exports__, module, __webpack_require__, module.id */
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ 3);
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".some-class {\n\tcolor: hotpink;\n}\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+/* 3 */
+/*!*********************************************************!*\
+  !*** ../../node_modules/css-loader/dist/runtime/api.js ***!
+  \*********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+"use strict";
+
 
 /*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
 */
 // css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
 
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
 
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
 };
 
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
 
-/***/ },
-/* 3 */
-/* unknown exports provided */
-/* all exports used */
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || '').concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
+}
+
+/***/ })
+/******/ 	]);
+```
+
+<details><summary><code>/* webpack runtime code */</code></summary>
+
+``` js
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			id: moduleId,
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+```
+
+</details>
+
+``` js
+(() => {
 /*!********************!*\
   !*** ./example.js ***!
   \********************/
-/***/ function(module, exports, __webpack_require__) {
-
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [unused] */
+/*! runtime requirements: __webpack_require__ */
 // use our loader
 console.dir(__webpack_require__(/*! ./loader!./file */ 1));
 
-// use buildin css loader
-console.dir(__webpack_require__(/*! ./test.css */ 0)); // default by extension
-console.dir(__webpack_require__(/*! css-loader!./test.css */ 0)); // manual
+// use built-in css loader
+console.dir(__webpack_require__(/*! ./test.css */ 2)); // default by extension
+console.dir(__webpack_require__(/*! !css-loader!./test.css */ 2)); // manual
 
+})();
 
-/***/ }
-/******/ ]);
+/******/ })()
+;
 ```
 
 # Console output
@@ -231,42 +245,58 @@ Prints in node.js (`enhanced-require example.js`) and in browser:
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-Hash: 197d528d54679c3ef22f
-Version: webpack 2.2.0-rc.2
-    Asset     Size  Chunks             Chunk Names
-output.js  5.43 kB       0  [emitted]  main
+Hash: 0a1b2c3d4e5f6a7b8c9d
+Version: webpack 5.0.0-beta.16
+    Asset      Size
+output.js  5.66 KiB  [emitted]  [name: main]
 Entrypoint main = output.js
-chunk    {0} output.js (main) 1.96 kB [entry] [rendered]
-    > main [3] ./example.js 
-    [0] (webpack)/~/css-loader!./test.css 202 bytes {0} [built]
-        cjs require !css-loader!./test.css [3] ./example.js 6:12-45
-        cjs require ./test.css [3] ./example.js 5:12-33
-    [1] ./loader.js!./file.js 41 bytes {0} [built]
-        cjs require ./loader!./file [3] ./example.js 2:12-38
-    [2] (webpack)/~/css-loader/lib/css-base.js 1.51 kB {0} [built]
-        cjs require ./../../node_modules/css-loader/lib/css-base.js [0] (webpack)/~/css-loader!./test.css 1:27-85
-    [3] ./example.js 210 bytes {0} [built]
+chunk output.js (main) 2.96 KiB [entry] [rendered]
+    > ./example.js main
+ ../../node_modules/css-loader/dist/cjs.js!./test.css 272 bytes [built]
+     cjs require ./test.css ./example.js 5:12-33
+     cjs require !css-loader!./test.css ./example.js 6:12-45
+     cjs self exports reference ../../node_modules/css-loader/dist/cjs.js!./test.css 3:0-7
+     cjs self exports reference ../../node_modules/css-loader/dist/cjs.js!./test.css 5:0-7
+     cjs self exports reference ../../node_modules/css-loader/dist/cjs.js!./test.css 7:0-14
+     cjs self exports reference ../../node_modules/css-loader/dist/cjs.js!./test.css 7:17-24
+ ../../node_modules/css-loader/dist/runtime/api.js 2.46 KiB [built]
+     cjs require ../../node_modules/css-loader/dist/runtime/api.js ../../node_modules/css-loader/dist/cjs.js!./test.css 2:34-94
+     cjs self exports reference ../../node_modules/css-loader/dist/runtime/api.js 9:0-14
+ ./example.js 205 bytes [built]
+     [no exports used]
+     entry ./example.js main
+ ./loader.js!./file.js 41 bytes [built]
+     [exports: answer, foo]
+     cjs require ./loader!./file ./example.js 2:12-38
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-Hash: 73ca0b614fa918a99453
-Version: webpack 2.2.0-rc.2
-    Asset     Size  Chunks             Chunk Names
-output.js  1.16 kB       0  [emitted]  main
+Hash: 0a1b2c3d4e5f6a7b8c9d
+Version: webpack 5.0.0-beta.16
+    Asset      Size
+output.js  1.18 KiB  [emitted]  [name: main]
 Entrypoint main = output.js
-chunk    {0} output.js (main) 1.94 kB [entry] [rendered]
-    > main [3] ./example.js 
-    [0] (webpack)/~/css-loader!./test.css 185 bytes {0} [built]
-        cjs require !css-loader!./test.css [3] ./example.js 6:12-45
-        cjs require ./test.css [3] ./example.js 5:12-33
-    [1] ./loader.js!./file.js 41 bytes {0} [built]
-        cjs require ./loader!./file [3] ./example.js 2:12-38
-    [2] (webpack)/~/css-loader/lib/css-base.js 1.51 kB {0} [built]
-        cjs require ./../../node_modules/css-loader/lib/css-base.js [0] (webpack)/~/css-loader!./test.css 1:27-85
-    [3] ./example.js 210 bytes {0} [built]
+chunk output.js (main) 2.96 KiB [entry] [rendered]
+    > ./example.js main
+ ../../node_modules/css-loader/dist/cjs.js!./test.css 272 bytes [built]
+     cjs require ./test.css ./example.js 5:12-33
+     cjs require !css-loader!./test.css ./example.js 6:12-45
+     cjs self exports reference ../../node_modules/css-loader/dist/cjs.js!./test.css 3:0-7
+     cjs self exports reference ../../node_modules/css-loader/dist/cjs.js!./test.css 5:0-7
+     cjs self exports reference ../../node_modules/css-loader/dist/cjs.js!./test.css 7:0-14
+     cjs self exports reference ../../node_modules/css-loader/dist/cjs.js!./test.css 7:17-24
+ ../../node_modules/css-loader/dist/runtime/api.js 2.46 KiB [built]
+     cjs require ../../node_modules/css-loader/dist/runtime/api.js ../../node_modules/css-loader/dist/cjs.js!./test.css 2:34-94
+     cjs self exports reference ../../node_modules/css-loader/dist/runtime/api.js 9:0-14
+ ./example.js 205 bytes [built]
+     [no exports used]
+     entry ./example.js main
+ ./loader.js!./file.js 41 bytes [built]
+     [exports: answer, foo]
+     cjs require ./loader!./file ./example.js 2:12-38
 ```

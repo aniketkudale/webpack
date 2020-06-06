@@ -1,82 +1,88 @@
-This example shows how to create an explicit vendor chunk as well as a common chunk for code shared among entry points. In this example, we have 3 entry points: `pageA`, `pageB`, and `pageC`. Those entry points share some of the same utility modules, but not others. This configuration will pull out any modules common to at least 2 bundles and place it it the `common` bundle instead, all while keeping the specified vendor libraries in their own bundle by themselves.
+This example shows how to create an explicit vendor chunk as well as a common chunk for code shared among entry points. In this example, we have 3 entry points: `pageA`, `pageB`, and `pageC`. Those entry points share some of the same utility modules, but not others. This configuration will pull out any modules common to at least 2 bundles and place it in the `common` bundle instead, all while keeping the specified vendor libraries in their own bundle by themselves.
 
 To better understand, here are the entry points and which utility modules they depend on:
 
 - `pageA`
- - `utility1`
- - `utility2`
+  - `utility1`
+  - `utility2`
 - `pageB`
- - `utility2`
- - `utility3`
+  - `utility2`
+  - `utility3`
 - `pageC`
- - `utility2`
- - `utility3`
+  - `utility2`
+  - `utility3`
 
 Given this configuration, webpack will produce the following bundles:
 
 - `vendor`
- - webpack runtime
- - `vendor1`
- - `vendor2`
+  - webpack runtime
+  - `vendor1`
+  - `vendor2`
 - `common`
- - `utility2`
- - `utility3`
+  - `utility2`
+  - `utility3`
 - `pageA`
- - `pageA`
- - `utility1`
+  - `pageA`
+  - `utility1`
 - `pageB`
- - `pageB`
+  - `pageB`
 - `pageC`
- - `pageC`
+  - `pageC`
 
 With this bundle configuration, you would load your third party libraries, then your common application code, then your page-specific application code.
 
 # webpack.config.js
 
-``` javascript
-{{webpack.config.js}}
+```javascript
+_{{webpack.config.js}}_
 ```
 
-# js/vendor.js
+# dist/vendor.js
 
-``` javascript
-{{js/vendor.js}}
+```javascript
+_{{dist/vendor.js}}_
 ```
 
-# js/common.js
+# dist/commons-utility2_js.js
 
 ``` javascript
-{{js/common.js}}
+_{{dist/commons-utility2_js.js}}_
 ```
 
-# js/pageA.js
+# dist/commons-utility3_js.js
 
 ``` javascript
-{{js/pageA.js}}
+_{{dist/commons-utility3_js.js}}_
 ```
 
-# js/pageB.js
+# dist/pageA.js
 
-``` javascript
-{{js/pageB.js}}
+```javascript
+_{{dist/pageA.js}}_
 ```
 
-# js/pageC.js
+# dist/pageB.js
 
-``` javascript
-{{js/pageC.js}}
+```javascript
+_{{dist/pageB.js}}_
+```
+
+# dist/pageC.js
+
+```javascript
+_{{dist/pageC.js}}_
 ```
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-{{stdout}}
+_{{stdout}}_
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-{{min:stdout}}
+_{{production:stdout}}_
 ```

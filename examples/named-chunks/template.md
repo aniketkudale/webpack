@@ -1,38 +1,37 @@
 # example.js
 
-``` javascript
-{{example.js}}
+```javascript
+_{{example.js}}_
 ```
 
+# dist/output.js
 
-# js/output.js
-
-``` javascript
-{{js/output.js}}
+```javascript
+_{{dist/output.js}}_
 ```
 
-# js/0.output.js
+# dist/666.output.js
 
-``` javascript
-{{js/0.output.js}}
+```javascript
+_{{dist/666.output.js}}_
 ```
 
-# js/1.output.js
+# dist/885.output.js
 
-``` javascript
-{{js/1.output.js}}
+```javascript
+_{{dist/885.output.js}}_
 ```
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-{{stdout}}
+_{{stdout}}_
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-{{min:stdout}}
+_{{production:stdout}}_
 ```

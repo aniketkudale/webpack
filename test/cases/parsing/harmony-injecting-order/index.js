@@ -1,3 +1,3 @@
 it("should inject variables before exporting", function() {
-	require("./file").f().should.have.property("webpackPolyfill");
+	expect(require("./file").f()).toEqual({});
 });

@@ -1,17 +1,51 @@
 var fs = require("fs");
-require("should");
+
+var findFile = function(files, regex) {
+	return files.find(function(file) {
+		if (regex.test(file)) {
+			return true;
+		}
+	});
+};
+
+var verifyFilenameLength = function(filename, expectedNameLength) {
+	expect(filename).toMatch(new RegExp("^.{" + expectedNameLength + "}$"));
+};
 
 module.exports = {
 	findBundle: function(i, options) {
 		var files = fs.readdirSync(options.output.path);
-		var expectedNameLength = options.amd.expectedFilenameLength;
-		var bundleDetect = new RegExp("^bundle" + i, "i");
-		for(var j = 0, file; j < files.length; j++) {
-			file = files[j];
-			if (bundleDetect.test(file)) {
-				file.should.match(new RegExp("^.{" + expectedNameLength + "}$"));
-				return "./" + file;
+
+		var bundleDetects = [
+			options.amd.expectedChunkFilenameLength && {
+				regex: new RegExp("^\\d+.bundle" + i, "i"),
+				expectedNameLength: options.amd.expectedChunkFilenameLength
+			},
+			{
+				regex: new RegExp("^bundle" + i, "i"),
+				expectedNameLength: options.amd.expectedFilenameLength
 			}
+		].filter(Boolean);
+
+		var bundleDetect;
+		var filename;
+
+		for (bundleDetect of bundleDetects) {
+			filename = findFile(files, bundleDetect.regex);
+			if (!filename) {
+				throw new Error(
+					`No file found with correct name (regex: ${
+						bundleDetect.regex.source
+					}, files: ${files.join(", ")})`
+				);
+			}
+			verifyFilenameLength(filename.replace(/^\d+\./, "X."), bundleDetect.expectedNameLength);
 		}
+
+		return "./" + filename;
+	},
+	afterExecute: () => {
+		delete global.webpackJsonp;
+		delete global.webpackChunk;
 	}
 };

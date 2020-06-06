@@ -1,38 +1,37 @@
-
 # example.js
 
-``` javascript
-{{example.js}}
+```javascript
+_{{example.js}}_
 ```
 
 # webpack.config.js
 
-``` javascript
-{{webpack.config.js}}
+```javascript
+_{{webpack.config.js}}_
 ```
 
-# js/desktop.js
+# dist/desktop.js
 
-``` javascript
-{{js/desktop.js}}
+```javascript
+_{{dist/desktop.js}}_
 ```
 
-# js/mobile.js
+# dist/mobile.js
 
-``` javascript
-{{js/mobile.js}}
+```javascript
+_{{dist/mobile.js}}_
 ```
 
 # Info
 
-## Uncompressed
+## Unoptimized
 
 ```
-{{stdout}}
+_{{stdout}}_
 ```
 
-## Minimized (uglify-js, no zip)
+## Production mode
 
 ```
-{{min:stdout}}
+_{{production:stdout}}_
 ```

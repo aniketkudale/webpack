@@ -1,4 +1,4 @@
-var webpack = require("../../../../")
+/** @type {import("../../../../").Configuration} */
 module.exports = {
 	entry: {
 		main: "./index",
@@ -18,9 +18,16 @@ module.exports = {
 		__dirname: false,
 		__filename: false
 	},
-	plugins: [
-		new webpack.optimize.CommonsChunkPlugin({
-			name: "common"
-		})
-	]
+	optimization: {
+		minimize: false,
+		splitChunks: {
+			cacheGroups: {
+				common: {
+					chunks: "initial",
+					minSize: 0,
+					name: "common"
+				}
+			}
+		}
+	}
 };

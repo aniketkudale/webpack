@@ -1,10 +1,11 @@
 var path = require("path");
-var webpack = require("../../../../");
-module.exports = {
+
+/** @type {function(any, any): import("../../../../").Configuration} */
+module.exports = (env, { testPath }) => ({
 	entry: "./test",
-	recordsPath: path.resolve(__dirname, "../../../js/config/records/issue-295/records.json"),
+	recordsPath: path.resolve(testPath, "records.json"),
 	target: "node",
 	node: {
 		__dirname: false
 	}
-};
+});

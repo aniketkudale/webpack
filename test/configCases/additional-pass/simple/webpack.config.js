@@ -1,16 +1,15 @@
-var testPlugin = function() {
+/** @type {import("../../../../").WebpackPluginFunction} */
+var testPlugin = function () {
 	var counter = 1;
-	this.plugin("compilation", function(compilation) {
+	this.hooks.compilation.tap("TestPlugin", compilation => {
 		var nr = counter++;
-		compilation.plugin("need-additional-pass", function() {
-			if(nr < 5)
-				return true;
+		compilation.hooks.needAdditionalPass.tap("TestPlugin", function () {
+			if (nr < 5) return true;
 		});
 	});
 };
 
+/** @type {import("../../../../").Configuration} */
 module.exports = {
-	plugins: [
-		testPlugin
-	]
+	plugins: [testPlugin]
 };

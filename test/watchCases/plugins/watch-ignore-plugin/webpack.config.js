@@ -1,8 +1,6 @@
 var webpack = require("../../../../");
-var path = require("path");
 
+/** @type {import("../../../../").Configuration} */
 module.exports = {
-	plugins: [
-		new webpack.WatchIgnorePlugin([/file\.js$/, /foo$/])
-	]
+	plugins: [new webpack.WatchIgnorePlugin({ paths: [/file\.js$/, /foo$/] })]
 };

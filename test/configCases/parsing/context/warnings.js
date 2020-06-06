@@ -1,3 +1,3 @@
 module.exports = [
-	[/Module parse failed/, /dump-file\.txt/, /templates \^\\\.\\\//]
+	[/Module parse failed/, {moduleName: /dump-file\.txt/}, {moduleTrace: /templates sync/}]
 ];
