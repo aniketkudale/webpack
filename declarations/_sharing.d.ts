@@ -12,10 +12,6 @@ export type Shared = (SharedItem | SharedObject)[] | SharedObject;
  * A module that should be shared in the share scope.
  */
 export type SharedItem = string;
-/**
- * Version number as array. Numbers and strings are accepted. Strings are treated as tags, which only match exactly. Numbers can match higher numbers.
- */
-export type SharedVersionArray = (number | string)[];
 
 export interface _Sharing {
 	[k: string]: any;
@@ -42,9 +38,13 @@ export interface SharedConfig {
 	 */
 	import?: false | SharedItem;
 	/**
+	 * Package name to determine required version from description file. This is only needed when package name can't be automatically determined from request.
+	 */
+	packageName?: string;
+	/**
 	 * Version requirement from module in share scope.
 	 */
-	requiredVersion?: string | SharedVersionArray;
+	requiredVersion?: false | string;
 	/**
 	 * Module is looked up under this key from the share scope.
 	 */
@@ -64,5 +64,5 @@ export interface SharedConfig {
 	/**
 	 * Version of the provided module. Will replace lower matching versions, but not higher.
 	 */
-	version?: false | string | SharedVersionArray;
+	version?: false | string;
 }

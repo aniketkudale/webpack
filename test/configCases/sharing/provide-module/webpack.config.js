@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-unpublished-require
 const { ProvideSharedPlugin } = require("../../../../").sharing;
 
 /** @type {import("../../../../").Configuration} */
@@ -6,10 +7,10 @@ module.exports = {
 		new ProvideSharedPlugin({
 			shareScope: "test-scope",
 			provides: [
+				"./test1",
 				{
-					test1: "./test1",
-					test2: {
-						import: "./test2-wrong",
+					"./test2-wrong": {
+						shareKey: "test2",
 						shareScope: "other-scope",
 						version: "1.2.3"
 					}
@@ -23,18 +24,18 @@ module.exports = {
 		new ProvideSharedPlugin({
 			shareScope: "other-scope",
 			provides: {
-				test2: {
-					import: "./test2",
-					version: [1, 3, 0]
+				"./test2": {
+					shareKey: "test2",
+					version: "1.3.0"
 				}
 			}
 		}),
 		new ProvideSharedPlugin({
 			provides: {
-				test2: {
-					import: "./test2-wrong",
+				"./test2-wrong": {
+					shareKey: "test2",
 					shareScope: "other-scope",
-					version: [1, 1, 9]
+					version: "1.1.9"
 				}
 			}
 		})

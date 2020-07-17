@@ -275,7 +275,7 @@ export type RuleSetUseItem =
 /**
  * A list of rules.
  */
-export type RuleSetRules = RuleSetRule[];
+export type RuleSetRules = ("..." | RuleSetRule)[];
 /**
  * Name of the configuration. Used when loading multiple configurations.
  */
@@ -408,10 +408,6 @@ export type ImportFunctionName = string;
  */
 export type JsonpFunction = string;
 /**
- * This option enables loading async chunks via a custom script type, such as script type="module".
- */
-export type JsonpScriptType = false | "text/javascript" | "module";
-/**
  * Make the output files a library, exporting the exports of the entry point.
  */
 export type Library = LibraryName | LibraryOptions;
@@ -436,6 +432,10 @@ export type PublicPath =
 			pathData: import("../lib/Compilation").PathData,
 			assetInfo?: import("../lib/Compilation").AssetInfo
 	  ) => string);
+/**
+ * This option enables loading async chunks via a custom script type, such as script type="module".
+ */
+export type ScriptType = false | "text/javascript" | "module";
 /**
  * The filename of the SourceMaps for the JavaScript files. They are inside the `output.path` directory.
  */
@@ -1030,9 +1030,13 @@ export interface RuleSetRule {
 	 */
 	loader?: RuleSetLoader;
 	/**
+	 * Match module mimetype when load from Data URI.
+	 */
+	mimetype?: RuleSetConditionOrConditions;
+	/**
 	 * Only execute the first matching rule in this array.
 	 */
-	oneOf?: RuleSetRules;
+	oneOf?: RuleSetRule[];
 	/**
 	 * Shortcut for use.options.
 	 */
@@ -1056,13 +1060,17 @@ export interface RuleSetRule {
 	 */
 	resource?: RuleSetConditionOrConditionsAbsolute;
 	/**
+	 * Match the resource fragment of the module.
+	 */
+	resourceFragment?: RuleSetConditionOrConditions;
+	/**
 	 * Match the resource query of the module.
 	 */
 	resourceQuery?: RuleSetConditionOrConditions;
 	/**
 	 * Match and execute these rules when this rule is matched.
 	 */
-	rules?: RuleSetRules;
+	rules?: RuleSetRule[];
 	/**
 	 * Flags a module as with or without side effects.
 	 */
@@ -1113,17 +1121,32 @@ export interface ResolveOptions {
 	 */
 	aliasFields?: (string[] | string)[];
 	/**
+	 * Extra resolve options per dependency category. Typical categories are "commonjs", "amd", "esm".
+	 */
+	byDependency?: {
+		/**
+		 * Options object for resolving requests.
+		 */
+		[k: string]: ResolveOptions;
+	};
+	/**
 	 * Enable caching of successfully resolved requests (cache entries are revalidated).
 	 */
 	cache?: boolean;
 	/**
 	 * Predicate function to decide which requests should be cached.
 	 */
-	cachePredicate?: Function;
+	cachePredicate?: (
+		request: import("enhanced-resolve").ResolveRequest
+	) => boolean;
 	/**
 	 * Include the context information in the cache identifier when caching.
 	 */
 	cacheWithContext?: boolean;
+	/**
+	 * Condition names for exports field entry point.
+	 */
+	conditionNames?: string[];
 	/**
 	 * Filenames used to find a description file (like a package.json).
 	 */
@@ -1133,15 +1156,17 @@ export interface ResolveOptions {
 	 */
 	enforceExtension?: boolean;
 	/**
+	 * Field names from the description file (usually package.json) which are used to provide entry points of a package.
+	 */
+	exportsFields?: string[];
+	/**
 	 * Extensions added to the request when trying to find the file.
 	 */
 	extensions?: string[];
 	/**
 	 * Filesystem for the resolver.
 	 */
-	fileSystem?: {
-		[k: string]: any;
-	};
+	fileSystem?: import("../lib/util/fs").InputFileSystem;
 	/**
 	 * Field names from the description file (package.json) which are used to find the default entry point.
 	 */
@@ -1157,13 +1182,19 @@ export interface ResolveOptions {
 	/**
 	 * Plugins for the resolver.
 	 */
-	plugins?: ResolvePluginInstance[];
+	plugins?: ("..." | ResolvePluginInstance)[];
 	/**
 	 * Custom resolver.
 	 */
-	resolver?: {
-		[k: string]: any;
-	};
+	resolver?: import("enhanced-resolve").Resolver;
+	/**
+	 * A list of resolve restrictions. Resolve results must fulfill all of these restrictions to resolve successfully. Other resolve paths are taken when restrictions are not met.
+	 */
+	restrictions?: (RegExp | string)[];
+	/**
+	 * A list of directories in which requests that are server-relative URLs (starting with '/') are resolved. On non-windows system these requests are tried to resolve as absolute path first.
+	 */
+	roots?: string[];
 	/**
 	 * Enable resolving symlinks to the original location.
 	 */
@@ -1257,7 +1288,7 @@ export interface Optimization {
 	/**
 	 * Minimizer(s) to use for minimizing the output.
 	 */
-	minimizer?: (WebpackPluginInstance | WebpackPluginFunction)[];
+	minimizer?: ("..." | WebpackPluginInstance | WebpackPluginFunction)[];
 	/**
 	 * Define the algorithm to choose module ids (natural: numeric ids in order of usage, named: readable ids for better debugging, hashed: (deprecated) short hashes as ids for better long term caching, deterministic: numeric hash ids for better long term caching, size: numeric ids focused on minimal initial download size, false: no algorithm used, as custom one can be provided via plugin).
 	 */
@@ -1341,6 +1372,10 @@ export interface OptimizationSplitChunksOptions {
 	chunks?:
 		| ("initial" | "async" | "all")
 		| ((chunk: import("../lib/Chunk")) => boolean);
+	/**
+	 * Size threshold at which splitting is enforced and other restrictions (minRemainingSize, maxAsyncRequests, maxInitialRequests) are ignored.
+	 */
+	enforceSizeThreshold?: OptimizationSplitChunksSizes;
 	/**
 	 * Options for modules not selected by any other cache group.
 	 */
@@ -1434,6 +1469,10 @@ export interface OptimizationSplitChunksCacheGroup {
 	 * Ignore minimum size, minimum chunks and maximum requests and always create chunks for this cache group.
 	 */
 	enforce?: boolean;
+	/**
+	 * Size threshold at which splitting is enforced and other restrictions (minRemainingSize, maxAsyncRequests, maxInitialRequests) are ignored.
+	 */
+	enforceSizeThreshold?: OptimizationSplitChunksSizes;
 	/**
 	 * Sets the template for the filename for created chunks.
 	 */
@@ -1601,10 +1640,6 @@ export interface Output {
 	 */
 	jsonpFunction?: JsonpFunction;
 	/**
-	 * This option enables loading async chunks via a custom script type, such as script type="module".
-	 */
-	jsonpScriptType?: JsonpScriptType;
-	/**
 	 * Make the output files a library, exporting the exports of the entry point.
 	 */
 	library?: Library;
@@ -1632,6 +1667,10 @@ export interface Output {
 	 * The `publicPath` specifies the public URL address of the output files when referenced in a browser.
 	 */
 	publicPath?: PublicPath;
+	/**
+	 * This option enables loading async chunks via a custom script type, such as script type="module".
+	 */
+	scriptType?: ScriptType;
 	/**
 	 * The filename of the SourceMaps for the JavaScript files. They are inside the `output.path` directory.
 	 */
@@ -2062,10 +2101,6 @@ export interface OutputNormalized {
 	 */
 	jsonpFunction?: JsonpFunction;
 	/**
-	 * This option enables loading async chunks via a custom script type, such as script type="module".
-	 */
-	jsonpScriptType?: JsonpScriptType;
-	/**
 	 * Options for library.
 	 */
 	library?: LibraryOptions;
@@ -2085,6 +2120,10 @@ export interface OutputNormalized {
 	 * The `publicPath` specifies the public URL address of the output files when referenced in a browser.
 	 */
 	publicPath?: PublicPath;
+	/**
+	 * This option enables loading async chunks via a custom script type, such as script type="module".
+	 */
+	scriptType?: ScriptType;
 	/**
 	 * The filename of the SourceMaps for the JavaScript files. They are inside the `output.path` directory.
 	 */

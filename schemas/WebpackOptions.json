@@ -689,10 +689,6 @@
       "description": "The JSONP function used by webpack for async loading of chunks.",
       "type": "string"
     },
-    "JsonpScriptType": {
-      "description": "This option enables loading async chunks via a custom script type, such as script type=\"module\".",
-      "enum": [false, "text/javascript", "module"]
-    },
     "Library": {
       "description": "Make the output files a library, exporting the exports of the entry point.",
       "anyOf": [
@@ -1116,9 +1112,15 @@
         "minimizer": {
           "description": "Minimizer(s) to use for minimizing the output.",
           "type": "array",
+          "cli": {
+            "exclude": true
+          },
           "items": {
             "description": "Plugin of type object or instanceof Function.",
             "anyOf": [
+              {
+                "enum": ["..."]
+              },
               {
                 "$ref": "#/definitions/WebpackPluginInstance"
               },
@@ -1260,6 +1262,14 @@
         "enforce": {
           "description": "Ignore minimum size, minimum chunks and maximum requests and always create chunks for this cache group.",
           "type": "boolean"
+        },
+        "enforceSizeThreshold": {
+          "description": "Size threshold at which splitting is enforced and other restrictions (minRemainingSize, maxAsyncRequests, maxInitialRequests) are ignored.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OptimizationSplitChunksSizes"
+            }
+          ]
         },
         "filename": {
           "description": "Sets the template for the filename for created chunks.",
@@ -1465,6 +1475,14 @@
             {
               "instanceof": "Function",
               "tsType": "((chunk: import('../lib/Chunk')) => boolean)"
+            }
+          ]
+        },
+        "enforceSizeThreshold": {
+          "description": "Size threshold at which splitting is enforced and other restrictions (minRemainingSize, maxAsyncRequests, maxInitialRequests) are ignored.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/OptimizationSplitChunksSizes"
             }
           ]
         },
@@ -1704,9 +1722,6 @@
         "jsonpFunction": {
           "$ref": "#/definitions/JsonpFunction"
         },
-        "jsonpScriptType": {
-          "$ref": "#/definitions/JsonpScriptType"
-        },
         "library": {
           "$ref": "#/definitions/Library"
         },
@@ -1741,6 +1756,9 @@
         },
         "publicPath": {
           "$ref": "#/definitions/PublicPath"
+        },
+        "scriptType": {
+          "$ref": "#/definitions/ScriptType"
         },
         "sourceMapFilename": {
           "$ref": "#/definitions/SourceMapFilename"
@@ -1847,9 +1865,6 @@
         "jsonpFunction": {
           "$ref": "#/definitions/JsonpFunction"
         },
-        "jsonpScriptType": {
-          "$ref": "#/definitions/JsonpScriptType"
-        },
         "library": {
           "$ref": "#/definitions/LibraryOptions"
         },
@@ -1864,6 +1879,9 @@
         },
         "publicPath": {
           "$ref": "#/definitions/PublicPath"
+        },
+        "scriptType": {
+          "$ref": "#/definitions/ScriptType"
         },
         "sourceMapFilename": {
           "$ref": "#/definitions/SourceMapFilename"
@@ -2113,6 +2131,18 @@
             ]
           }
         },
+        "byDependency": {
+          "description": "Extra resolve options per dependency category. Typical categories are \"commonjs\", \"amd\", \"esm\".",
+          "type": "object",
+          "additionalProperties": {
+            "description": "Options object for resolving requests.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/ResolveOptions"
+              }
+            ]
+          }
+        },
         "cache": {
           "description": "Enable caching of successfully resolved requests (cache entries are revalidated).",
           "type": "boolean"
@@ -2120,11 +2150,19 @@
         "cachePredicate": {
           "description": "Predicate function to decide which requests should be cached.",
           "instanceof": "Function",
-          "tsType": "Function"
+          "tsType": "((request: import('enhanced-resolve').ResolveRequest) => boolean)"
         },
         "cacheWithContext": {
           "description": "Include the context information in the cache identifier when caching.",
           "type": "boolean"
+        },
+        "conditionNames": {
+          "description": "Condition names for exports field entry point.",
+          "type": "array",
+          "items": {
+            "description": "Condition names for exports field entry point.",
+            "type": "string"
+          }
         },
         "descriptionFiles": {
           "description": "Filenames used to find a description file (like a package.json).",
@@ -2139,6 +2177,14 @@
           "description": "Enforce using one of the extensions from the extensions option.",
           "type": "boolean"
         },
+        "exportsFields": {
+          "description": "Field names from the description file (usually package.json) which are used to provide entry points of a package.",
+          "type": "array",
+          "items": {
+            "description": "Field name from the description file (usually package.json) which is used to provide entry points of a package.",
+            "type": "string"
+          }
+        },
         "extensions": {
           "description": "Extensions added to the request when trying to find the file.",
           "type": "array",
@@ -2149,7 +2195,8 @@
           }
         },
         "fileSystem": {
-          "description": "Filesystem for the resolver."
+          "description": "Filesystem for the resolver.",
+          "tsType": "(import('../lib/util/fs').InputFileSystem)"
         },
         "mainFields": {
           "description": "Field names from the description file (package.json) which are used to find the default entry point.",
@@ -2193,9 +2240,15 @@
         "plugins": {
           "description": "Plugins for the resolver.",
           "type": "array",
+          "cli": {
+            "exclude": true
+          },
           "items": {
             "description": "Plugin of type object or instanceof Function.",
-            "oneOf": [
+            "anyOf": [
+              {
+                "enum": ["..."]
+              },
               {
                 "$ref": "#/definitions/ResolvePluginInstance"
               }
@@ -2203,7 +2256,34 @@
           }
         },
         "resolver": {
-          "description": "Custom resolver."
+          "description": "Custom resolver.",
+          "tsType": "(import('enhanced-resolve').Resolver)"
+        },
+        "restrictions": {
+          "description": "A list of resolve restrictions. Resolve results must fulfill all of these restrictions to resolve successfully. Other resolve paths are taken when restrictions are not met.",
+          "type": "array",
+          "items": {
+            "description": "Resolve restriction. Resolve result must fulfill this restriction.",
+            "anyOf": [
+              {
+                "instanceof": "RegExp",
+                "tsType": "RegExp"
+              },
+              {
+                "type": "string",
+                "absolutePath": true,
+                "minLength": 1
+              }
+            ]
+          }
+        },
+        "roots": {
+          "description": "A list of directories in which requests that are server-relative URLs (starting with '/') are resolved. On non-windows system these requests are tried to resolve as absolute path first.",
+          "type": "array",
+          "items": {
+            "description": "Directory in which requests that are server-relative URLs (starting with '/') are resolved.",
+            "type": "string"
+          }
         },
         "symlinks": {
           "description": "Enable resolving symlinks to the original location.",
@@ -2467,13 +2547,25 @@
             }
           ]
         },
-        "oneOf": {
-          "description": "Only execute the first matching rule in this array.",
+        "mimetype": {
+          "description": "Match module mimetype when load from Data URI.",
           "oneOf": [
             {
-              "$ref": "#/definitions/RuleSetRules"
+              "$ref": "#/definitions/RuleSetConditionOrConditions"
             }
           ]
+        },
+        "oneOf": {
+          "description": "Only execute the first matching rule in this array.",
+          "type": "array",
+          "items": {
+            "description": "A rule.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/RuleSetRule"
+              }
+            ]
+          }
         },
         "options": {
           "description": "Shortcut for use.options.",
@@ -2513,6 +2605,14 @@
             }
           ]
         },
+        "resourceFragment": {
+          "description": "Match the resource fragment of the module.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/RuleSetConditionOrConditions"
+            }
+          ]
+        },
         "resourceQuery": {
           "description": "Match the resource query of the module.",
           "oneOf": [
@@ -2523,11 +2623,15 @@
         },
         "rules": {
           "description": "Match and execute these rules when this rule is matched.",
-          "oneOf": [
-            {
-              "$ref": "#/definitions/RuleSetRules"
-            }
-          ]
+          "type": "array",
+          "items": {
+            "description": "A rule.",
+            "oneOf": [
+              {
+                "$ref": "#/definitions/RuleSetRule"
+              }
+            ]
+          }
         },
         "sideEffects": {
           "description": "Flags a module as with or without side effects.",
@@ -2560,7 +2664,13 @@
       "type": "array",
       "items": {
         "description": "A rule.",
-        "oneOf": [
+        "anyOf": [
+          {
+            "cli": {
+              "exclude": true
+            },
+            "enum": ["..."]
+          },
           {
             "$ref": "#/definitions/RuleSetRule"
           }
@@ -2627,6 +2737,10 @@
           "$ref": "#/definitions/RuleSetLoader"
         }
       ]
+    },
+    "ScriptType": {
+      "description": "This option enables loading async chunks via a custom script type, such as script type=\"module\".",
+      "enum": [false, "text/javascript", "module"]
     },
     "SourceMapFilename": {
       "description": "The filename of the SourceMaps for the JavaScript files. They are inside the `output.path` directory.",

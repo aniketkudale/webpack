@@ -771,6 +771,25 @@ Object {
     "multiple": true,
     "simpleType": "string",
   },
+  "module-rules-mimetype": Object {
+    "configs": Array [
+      Object {
+        "description": "Match module mimetype when load from Data URI.",
+        "multiple": true,
+        "path": "module.rules[].mimetype",
+        "type": "RegExp",
+      },
+      Object {
+        "description": "Match module mimetype when load from Data URI.",
+        "multiple": true,
+        "path": "module.rules[].mimetype",
+        "type": "string",
+      },
+    ],
+    "description": "Match module mimetype when load from Data URI.",
+    "multiple": true,
+    "simpleType": "string",
+  },
   "module-rules-options": Object {
     "configs": Array [
       Object {
@@ -832,6 +851,25 @@ Object {
       },
     ],
     "description": "Match the resource path of the module.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "module-rules-resource-fragment": Object {
+    "configs": Array [
+      Object {
+        "description": "Match the resource fragment of the module.",
+        "multiple": true,
+        "path": "module.rules[].resourceFragment",
+        "type": "RegExp",
+      },
+      Object {
+        "description": "Match the resource fragment of the module.",
+        "multiple": true,
+        "path": "module.rules[].resourceFragment",
+        "type": "string",
+      },
+    ],
+    "description": "Match the resource fragment of the module.",
     "multiple": true,
     "simpleType": "string",
   },
@@ -1494,6 +1532,19 @@ Object {
     "multiple": false,
     "simpleType": "string",
   },
+  "optimization-split-chunks-enforce-size-threshold": Object {
+    "configs": Array [
+      Object {
+        "description": "Size of the javascript part of the chunk.",
+        "multiple": false,
+        "path": "optimization.splitChunks.enforceSizeThreshold",
+        "type": "number",
+      },
+    ],
+    "description": "Size of the javascript part of the chunk.",
+    "multiple": false,
+    "simpleType": "number",
+  },
   "optimization-split-chunks-fallback-cache-group-automatic-name-delimiter": Object {
     "configs": Array [
       Object {
@@ -2068,24 +2119,6 @@ Object {
     "multiple": false,
     "simpleType": "string",
   },
-  "output-jsonp-script-type": Object {
-    "configs": Array [
-      Object {
-        "description": "This option enables loading async chunks via a custom script type, such as script type=\\"module\\".",
-        "multiple": false,
-        "path": "output.jsonpScriptType",
-        "type": "enum",
-        "values": Array [
-          false,
-          "text/javascript",
-          "module",
-        ],
-      },
-    ],
-    "description": "This option enables loading async chunks via a custom script type, such as script type=\\"module\\".",
-    "multiple": false,
-    "simpleType": "string",
-  },
   "output-library": Object {
     "configs": Array [
       Object {
@@ -2429,6 +2462,24 @@ Object {
     "multiple": false,
     "simpleType": "string",
   },
+  "output-script-type": Object {
+    "configs": Array [
+      Object {
+        "description": "This option enables loading async chunks via a custom script type, such as script type=\\"module\\".",
+        "multiple": false,
+        "path": "output.scriptType",
+        "type": "enum",
+        "values": Array [
+          false,
+          "text/javascript",
+          "module",
+        ],
+      },
+    ],
+    "description": "This option enables loading async chunks via a custom script type, such as script type=\\"module\\".",
+    "multiple": false,
+    "simpleType": "string",
+  },
   "output-source-map-filename": Object {
     "configs": Array [
       Object {
@@ -2759,6 +2810,32 @@ Object {
     "multiple": false,
     "simpleType": "boolean",
   },
+  "resolve-condition-names": Object {
+    "configs": Array [
+      Object {
+        "description": "Condition names for exports field entry point.",
+        "multiple": true,
+        "path": "resolve.conditionNames[]",
+        "type": "string",
+      },
+    ],
+    "description": "Condition names for exports field entry point.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "resolve-condition-names-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in configuration. Condition names for exports field entry point.",
+        "multiple": false,
+        "path": "resolve.conditionNames",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in configuration. Condition names for exports field entry point.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
   "resolve-description-files": Object {
     "configs": Array [
       Object {
@@ -2795,6 +2872,32 @@ Object {
       },
     ],
     "description": "Enforce using one of the extensions from the extensions option.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "resolve-exports-fields": Object {
+    "configs": Array [
+      Object {
+        "description": "Field name from the description file (usually package.json) which is used to provide entry points of a package.",
+        "multiple": true,
+        "path": "resolve.exportsFields[]",
+        "type": "string",
+      },
+    ],
+    "description": "Field name from the description file (usually package.json) which is used to provide entry points of a package.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "resolve-exports-fields-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in configuration. Field names from the description file (usually package.json) which are used to provide entry points of a package.",
+        "multiple": false,
+        "path": "resolve.exportsFields",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in configuration. Field names from the description file (usually package.json) which are used to provide entry points of a package.",
     "multiple": false,
     "simpleType": "boolean",
   },
@@ -2937,6 +3040,32 @@ Object {
     "multiple": false,
     "simpleType": "boolean",
   },
+  "resolve-loader-condition-names": Object {
+    "configs": Array [
+      Object {
+        "description": "Condition names for exports field entry point.",
+        "multiple": true,
+        "path": "resolveLoader.conditionNames[]",
+        "type": "string",
+      },
+    ],
+    "description": "Condition names for exports field entry point.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "resolve-loader-condition-names-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in configuration. Condition names for exports field entry point.",
+        "multiple": false,
+        "path": "resolveLoader.conditionNames",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in configuration. Condition names for exports field entry point.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
   "resolve-loader-description-files": Object {
     "configs": Array [
       Object {
@@ -2973,6 +3102,32 @@ Object {
       },
     ],
     "description": "Enforce using one of the extensions from the extensions option.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "resolve-loader-exports-fields": Object {
+    "configs": Array [
+      Object {
+        "description": "Field name from the description file (usually package.json) which is used to provide entry points of a package.",
+        "multiple": true,
+        "path": "resolveLoader.exportsFields[]",
+        "type": "string",
+      },
+    ],
+    "description": "Field name from the description file (usually package.json) which is used to provide entry points of a package.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "resolve-loader-exports-fields-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in configuration. Field names from the description file (usually package.json) which are used to provide entry points of a package.",
+        "multiple": false,
+        "path": "resolveLoader.exportsFields",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in configuration. Field names from the description file (usually package.json) which are used to provide entry points of a package.",
     "multiple": false,
     "simpleType": "boolean",
   },
@@ -3077,6 +3232,64 @@ Object {
       },
     ],
     "description": "Clear all items provided in configuration. Folder names or directory paths where to find modules.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "resolve-loader-restrictions": Object {
+    "configs": Array [
+      Object {
+        "description": "Resolve restriction. Resolve result must fulfill this restriction.",
+        "multiple": true,
+        "path": "resolveLoader.restrictions[]",
+        "type": "RegExp",
+      },
+      Object {
+        "description": "Resolve restriction. Resolve result must fulfill this restriction.",
+        "multiple": true,
+        "path": "resolveLoader.restrictions[]",
+        "type": "path",
+      },
+    ],
+    "description": "Resolve restriction. Resolve result must fulfill this restriction.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "resolve-loader-restrictions-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in configuration. A list of resolve restrictions. Resolve results must fulfill all of these restrictions to resolve successfully. Other resolve paths are taken when restrictions are not met.",
+        "multiple": false,
+        "path": "resolveLoader.restrictions",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in configuration. A list of resolve restrictions. Resolve results must fulfill all of these restrictions to resolve successfully. Other resolve paths are taken when restrictions are not met.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "resolve-loader-roots": Object {
+    "configs": Array [
+      Object {
+        "description": "Directory in which requests that are server-relative URLs (starting with '/') are resolved.",
+        "multiple": true,
+        "path": "resolveLoader.roots[]",
+        "type": "string",
+      },
+    ],
+    "description": "Directory in which requests that are server-relative URLs (starting with '/') are resolved.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "resolve-loader-roots-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in configuration. A list of directories in which requests that are server-relative URLs (starting with '/') are resolved. On non-windows system these requests are tried to resolve as absolute path first.",
+        "multiple": false,
+        "path": "resolveLoader.roots",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in configuration. A list of directories in which requests that are server-relative URLs (starting with '/') are resolved. On non-windows system these requests are tried to resolve as absolute path first.",
     "multiple": false,
     "simpleType": "boolean",
   },
@@ -3194,6 +3407,64 @@ Object {
       },
     ],
     "description": "Clear all items provided in configuration. Folder names or directory paths where to find modules.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "resolve-restrictions": Object {
+    "configs": Array [
+      Object {
+        "description": "Resolve restriction. Resolve result must fulfill this restriction.",
+        "multiple": true,
+        "path": "resolve.restrictions[]",
+        "type": "RegExp",
+      },
+      Object {
+        "description": "Resolve restriction. Resolve result must fulfill this restriction.",
+        "multiple": true,
+        "path": "resolve.restrictions[]",
+        "type": "path",
+      },
+    ],
+    "description": "Resolve restriction. Resolve result must fulfill this restriction.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "resolve-restrictions-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in configuration. A list of resolve restrictions. Resolve results must fulfill all of these restrictions to resolve successfully. Other resolve paths are taken when restrictions are not met.",
+        "multiple": false,
+        "path": "resolve.restrictions",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in configuration. A list of resolve restrictions. Resolve results must fulfill all of these restrictions to resolve successfully. Other resolve paths are taken when restrictions are not met.",
+    "multiple": false,
+    "simpleType": "boolean",
+  },
+  "resolve-roots": Object {
+    "configs": Array [
+      Object {
+        "description": "Directory in which requests that are server-relative URLs (starting with '/') are resolved.",
+        "multiple": true,
+        "path": "resolve.roots[]",
+        "type": "string",
+      },
+    ],
+    "description": "Directory in which requests that are server-relative URLs (starting with '/') are resolved.",
+    "multiple": true,
+    "simpleType": "string",
+  },
+  "resolve-roots-reset": Object {
+    "configs": Array [
+      Object {
+        "description": "Clear all items provided in configuration. A list of directories in which requests that are server-relative URLs (starting with '/') are resolved. On non-windows system these requests are tried to resolve as absolute path first.",
+        "multiple": false,
+        "path": "resolve.roots",
+        "type": "reset",
+      },
+    ],
+    "description": "Clear all items provided in configuration. A list of directories in which requests that are server-relative URLs (starting with '/') are resolved. On non-windows system these requests are tried to resolve as absolute path first.",
     "multiple": false,
     "simpleType": "boolean",
   },

@@ -43,15 +43,21 @@
             }
           ]
         },
+        "packageName": {
+          "description": "Package name to determine required version from description file. This is only needed when package name can't be automatically determined from request.",
+          "type": "string",
+          "minLength": 1
+        },
         "requiredVersion": {
           "description": "Version requirement from module in share scope.",
           "anyOf": [
             {
-              "description": "Version as string. Can be prefixed with '^' or '~' for minimum matches. Each part of the version should be separated by a dot '.'.",
-              "type": "string"
+              "description": "No version requirement check.",
+              "enum": [false]
             },
             {
-              "$ref": "#/definitions/SharedVersionArray"
+              "description": "Version as string. Can be prefixed with '^' or '~' for minimum matches. Each part of the version should be separated by a dot '.'.",
+              "type": "string"
             }
           ]
         },
@@ -83,9 +89,6 @@
             {
               "description": "Version as string. Each part of the version should be separated by a dot '.'.",
               "type": "string"
-            },
-            {
-              "$ref": "#/definitions/SharedVersionArray"
             }
           ]
         }
@@ -107,23 +110,6 @@
           },
           {
             "$ref": "#/definitions/SharedItem"
-          }
-        ]
-      }
-    },
-    "SharedVersionArray": {
-      "description": "Version number as array. Numbers and strings are accepted. Strings are treated as tags, which only match exactly. Numbers can match higher numbers.",
-      "type": "array",
-      "items": {
-        "description": "An item of the version.",
-        "anyOf": [
-          {
-            "description": "Version number. It's assumed that the module is compatible with any higher version number.",
-            "type": "number"
-          },
-          {
-            "description": "Version tag. The module is only compatible with the exact matching version tag.",
-            "type": "string"
           }
         ]
       }
