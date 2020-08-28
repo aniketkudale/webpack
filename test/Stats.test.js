@@ -186,11 +186,14 @@ describe("Stats", () => {
 			      ],
 			      "comparedForEmit": false,
 			      "emitted": true,
+			      "filteredRelated": undefined,
 			      "info": Object {
-			        "size": 111,
+			        "minimized": true,
+			        "size": 107,
 			      },
 			      "name": "chunkB.js",
-			      "size": 111,
+			      "size": 107,
+			      "type": "asset",
 			    },
 			    Object {
 			      "auxiliaryChunkIdHints": Array [],
@@ -201,11 +204,14 @@ describe("Stats", () => {
 			      ],
 			      "comparedForEmit": false,
 			      "emitted": true,
+			      "filteredRelated": undefined,
 			      "info": Object {
+			        "minimized": true,
 			        "size": 182,
 			      },
 			      "name": "entryA.js",
 			      "size": 182,
+			      "type": "asset",
 			    },
 			    Object {
 			      "auxiliaryChunkIdHints": Array [],
@@ -216,11 +222,14 @@ describe("Stats", () => {
 			      ],
 			      "comparedForEmit": false,
 			      "emitted": true,
+			      "filteredRelated": undefined,
 			      "info": Object {
-			        "size": 2153,
+			        "minimized": true,
+			        "size": 2185,
 			      },
 			      "name": "entryB.js",
-			      "size": 2153,
+			      "size": 2185,
+			      "type": "asset",
 			    },
 			  ],
 			  "assetsByChunkName": Object {
